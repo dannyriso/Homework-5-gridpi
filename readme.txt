@@ -27,9 +27,10 @@ Runtimes for the same npoints values:
 
 These runtimes aren't representative of O(npoints^2). When
 npoints increases by a factor of 10, runtime should increase
-by a factor of 1000, which obviously doesn't happen. It does
-take progressively more time to compute as npoints increases,
-just not at the predicted rate.
+by a factor of 100, which obviously doesn't happen except
+loosely when npoints increases from 100 to 1000. It does take
+progressively more time to compute as npoints increases, just 
+ot at the predicted rate.
 
 Creating a new constexpr function which ran at compile time
 resulted in the following runtimes:
@@ -37,10 +38,11 @@ resulted in the following runtimes:
 	npoints = 100; time = 0.019s; estimate = 3.1812
 	npoints = 1000; time = 0.049s; estimate = 3.14554
 
-With the gridpi2 function, there's obviously a big difference in
-runtimes, while all the estimates remained the same. This is
-because none of the actual calculations were changed; only the
-compile time changed, because the values were calculated during
-compilation and then reported during runtime. Correspondingly,
-it did take longer for the program to compile as npoints
-increased.
+With the gridpi2 function, although all the estimates remained
+the same, there's obviously a big difference in runtimes. This
+is because none of the calculations were changed, only adjusted
+so they could be carried out during compilation and then
+reported during runtime. Correspondingly, although the runtimes
+for all values of npoints are roughly the same, it did take
+longer for the program to compile as npoints increased, since
+all the results were fully calculated before running.
